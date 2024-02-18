@@ -15,4 +15,12 @@ const updateNoteService = (id, title, description, time) =>
     }
   );
 
-export { getAllService, createNoteService, findByidService, updateNoteService };
+const deleteNoteService = (id) => Notes.findOneAndDelete({ _id: id });
+
+export {
+  getAllService,
+  createNoteService,
+  findByidService,
+  updateNoteService,
+  deleteNoteService,
+};
