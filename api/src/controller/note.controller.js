@@ -10,6 +10,10 @@ export const getAllController = async (req, res) => {
   try {
     const notes = await getAllService();
 
+    if (!notes) {
+      return res.status(500).send("There are not notes created!");
+    }
+
     return res.send(notes);
   } catch (error) {
     return res.status(500).send(error.message);
@@ -68,6 +72,20 @@ export const deleteNoteController = async (req, res) => {
     await deleteNoteService(id);
 
     res.status(200).send("Note deleted successfully");
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+};
+
+export const getNoteByIdController = async (req, res) => {
+  try {
+    note = await findByidService();
+
+    if (!note) {
+      return res.status(500).send("Could not find any note with this ID");
+    }
+
+    return res.send(note);
   } catch (error) {
     return res.status(500).send(error.message);
   }
